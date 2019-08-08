@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SpringMVC + Thymeleaf + Bootstrap 4 Table Example</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+</head>
+
+<script>
+	$(document).ready(function() {
+    	$('#customerTable').DataTable({"paging": true});
+    	$('.dataTables_length').addClass('bs-select');
+		}
+	);
+</script>
+ 
+<body>
+	<h1>Customer Table</h1>
+		<table id="customerTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Street</th>
+					<th>Postcode</th>
+				</tr>
+			</thead>
+			<tbody>
+				 <tr th:each="customer, rowStat: ${customers}" >
+			        <td th:text="${customer.id}"></td>
+							<td th:text="${customer.name}"></td>
+			        <td th:text="${customer.age}"></td>
+			        <td th:text="${customer.address.street}"></td>
+			        <td th:text="${customer.address.postcode}"></td>
+			    </tr>
+			</tbody>
+		</table>
+</body>
